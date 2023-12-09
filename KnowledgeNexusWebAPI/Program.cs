@@ -1,6 +1,15 @@
+using KnowledgeNexusWebAPI.Services;
+using KnowledgeNexusWebAPI.Settings;
+using Microsoft.Extensions.Options;
+
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+builder.Services.AddSingleton<IMongoDbSettings>(sp => sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
 // Add services to the container.
+
+builder.Services.AddScoped<ICourseService, CourseService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

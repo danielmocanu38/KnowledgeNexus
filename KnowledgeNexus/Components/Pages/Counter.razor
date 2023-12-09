@@ -4,51 +4,55 @@
 <h1>Create Course</h1>
 
 <div class="container">
-    <form @onsubmit="CreateCourse" class="row g-3">
+    <div class="row">
         <div class="col-md-6">
-            <label for="title" class="form-label">Title:</label>
-            <input type="text" id="title" class="form-control" @bind="course.Title" />
+            <form @onsubmit="CreateCourse" class="g-3">
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title:</label>
+                    <input type="text" id="title" class="form-control" @bind="course.Title" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description:</label>
+                    <textarea id="description" class="form-control" @bind="course.Description"></textarea>
+                </div>
+
+                <h3>Filters</h3>
+                @foreach (var filter in filters)
+                {
+                    <div class="mb-3">
+                        <label class="form-label">Select @filter.Key:</label>
+                        <select class="form-select form-select-sm" @onchange="e => SetFilter(filter.Key, e.Value.ToString())">
+                            <option value="" selected>Choose...</option>
+                            @foreach (var option in filter.Value)
+                            {
+                                <option value="@option">@option</option>
+                            }
+                        </select>
+                    </div>
+                }
+                <button type="submit" class="btn btn-primary">Create</button>
+            </form>
         </div>
 
         <div class="col-md-6">
-            <label for="description" class="form-label">Description:</label>
-            <textarea id="description" class="form-control" @bind="course.Description"></textarea>
-        </div>
-
-        @foreach (var filter in filters)
-        {
-            <div class="col-md-6">
-                <label class="form-label">Select @filter.Key:</label>
-                <select class="form-select" @onchange="e => SetFilter(filter.Key, e.Value.ToString())">
-                    <option value="" selected>Choose...</option>
-                    @foreach (var option in filter.Value)
-                    {
-                        <option value="@option">@option</option>
-                    }
-                </select>
+            <h3>Input Content</h3>
+            <div class="mb-3">
+                <label for="audioInput" class="form-label">Audio File:</label>
+                <input type="file" id="audioInput" class="form-control" @onchange="HandleAudioUpload" />
             </div>
-        }
 
-        <!-- File inputs -->
-        <div class="col-md-6">
-            <label for="audioInput" class="form-label">Audio File:</label>
-            <input type="file" id="audioInput" class="form-control" @onchange="HandleAudioUpload" />
-        </div>
+            <div class="mb-3">
+                <label for="videoInput" class="form-label">Video File:</label>
+                <input type="file" id="videoInput" class="form-control" @onchange="HandleVideoUpload" />
+            </div>
 
-        <div class="col-md-6">
-            <label for="videoInput" class="form-label">Video File:</label>
-            <input type="file" id="videoInput" class="form-control" @onchange="HandleVideoUpload" />
+            <div class="mb-3">
+                <label for="pdfInput" class="form-label">PDF File:</label>
+                <input type="file" id="pdfInput" class="form-control" @onchange="HandlePdfUpload" />
+            </div>
         </div>
-
-        <div class="col-md-6">
-            <label for="pdfInput" class="form-label">PDF File:</label>
-            <input type="file" id="pdfInput" class="form-control" @onchange="HandlePdfUpload" />
-        </div>
-
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Create</button>
-        </div>
-    </form>
+    </div>
 </div>
 
 @code {
@@ -82,7 +86,9 @@
     {
         { "Subject", new List<string> { "Math", "Science", "Literature" } },
         { "Partner", new List<string> { "University A", "Company B", "Institution C" } },
-        // Add other filters as needed
+        { "Subject1", new List<string> { "Math", "Science", "Literature" } },
+        { "Partner1", new List<string> { "University A", "Company B", "Institution C" } },
+        { "Subject2", new List<string> { "Math", "Science", "Literature" } },
     };
 
     private readonly Dictionary<string, string> selectedFilters = new Dictionary<string, string>();
@@ -98,5 +104,4 @@
             selectedFilters[filterKey] = selectedOption;
         }
     }
-
 }

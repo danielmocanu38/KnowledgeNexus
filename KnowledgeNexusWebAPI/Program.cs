@@ -1,18 +1,13 @@
 using KnowledgeNexusWebAPI.Services;
 using KnowledgeNexusWebAPI.Settings;
-using MongoDB.Driver;
+using Microsoft.Extensions.Options;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.Configure<MongoDbSettings>(builder.Configuration.GetSection(nameof(MongoDbSettings)));
+builder.Services.AddSingleton<IMongoDbSettings>(sp => sp.GetRequiredService<IOptions<MongoDbSettings>>().Value);
+
 // Add services to the container.
-builder.Services.AddSingleton<IMongoClient, MongoClient>(x =>
-{
-    var settings = x.GetRequiredService<IConfiguration>()
-        .GetSection(nameof(MongoDbSettings))
-        .Get<MongoDbSettings>();
-    
-    return new MongoClient(settings?.ConnectionString);
-});
 
 builder.Services.AddScoped<ICourseService, CourseService>();
 

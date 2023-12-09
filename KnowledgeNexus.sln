@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeNexus", "KnowledgeNexus\KnowledgeNexus.csproj", "{5AC7F9F0-005E-493D-B09B-2FA96046104B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeNexusWebAPI", "KnowledgeNexusWebAPI\KnowledgeNexusWebAPI.csproj", "{CBE1A7B6-E1CD-451B-840A-9811FF7D51FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeNexusWebAPI", "KnowledgeNexusWebAPI\KnowledgeNexusWebAPI.csproj", "{CBE1A7B6-E1CD-451B-840A-9811FF7D51FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeNexusModels", "KnowledgeNexusModels\KnowledgeNexusModels.csproj", "{10BAF83E-457C-41C9-A3B2-A3BC44839BD1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeNexusModels", "KnowledgeNexusModels\KnowledgeNexusModels.csproj", "{10BAF83E-457C-41C9-A3B2-A3BC44839BD1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeNexusWithAccounts", "KnowledgeNexusWithAccounts\KnowledgeNexusWithAccounts.csproj", "{CB1CF4DB-CEB4-47A3-A22D-2E9B13C32D67}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeNexus", "KnowledgeNexus\KnowledgeNexus.csproj", "{6DBB19DB-D57F-412B-B9BB-CAED9F2C2F81}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5AC7F9F0-005E-493D-B09B-2FA96046104B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5AC7F9F0-005E-493D-B09B-2FA96046104B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5AC7F9F0-005E-493D-B09B-2FA96046104B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5AC7F9F0-005E-493D-B09B-2FA96046104B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{CBE1A7B6-E1CD-451B-840A-9811FF7D51FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CBE1A7B6-E1CD-451B-840A-9811FF7D51FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBE1A7B6-E1CD-451B-840A-9811FF7D51FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,10 +23,10 @@ Global
 		{10BAF83E-457C-41C9-A3B2-A3BC44839BD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10BAF83E-457C-41C9-A3B2-A3BC44839BD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10BAF83E-457C-41C9-A3B2-A3BC44839BD1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB1CF4DB-CEB4-47A3-A22D-2E9B13C32D67}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB1CF4DB-CEB4-47A3-A22D-2E9B13C32D67}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB1CF4DB-CEB4-47A3-A22D-2E9B13C32D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB1CF4DB-CEB4-47A3-A22D-2E9B13C32D67}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBB19DB-D57F-412B-B9BB-CAED9F2C2F81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBB19DB-D57F-412B-B9BB-CAED9F2C2F81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBB19DB-D57F-412B-B9BB-CAED9F2C2F81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBB19DB-D57F-412B-B9BB-CAED9F2C2F81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

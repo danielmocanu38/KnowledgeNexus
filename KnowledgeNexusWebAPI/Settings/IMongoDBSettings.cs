@@ -1,6 +1,6 @@
-﻿namespace NewsAPI.Settings
+﻿namespace KnowledgeNexusWebAPI.Settings
 {
-    public interface IMongoDBSettings
+    public interface IMongoDbSettings
     {
         string CollectionName { get; set; }
         string ConnectionString { get; set; }

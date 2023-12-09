@@ -1,4 +1,4 @@
-﻿namespace KnowledgeNexus.Models
+﻿namespace KnowledgeNexusModels.Models
 {
     public class Author
     {

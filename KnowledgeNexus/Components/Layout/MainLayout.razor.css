@@ -123,16 +123,3 @@ main {
     padding: 1rem;
 }
 
-.filter-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* Adjust the space between the dropdowns */
-    margin-bottom: 20px; /* Space below the filter row */
-}
-
-    .filter-container select {
-        padding: 10px;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-        cursor: pointer;
-    }

@@ -4,6 +4,18 @@
 @using KnowledgeNexusModels.Models
 
 <PageTitle>Welcome to KnowledgeNexus</PageTitle>
+<div class="filter-container">
+    @foreach (var filter in filters)
+    {
+        <select @onchange="e => SetFilter(filter.Key, e.Value?.ToString())">
+            <option value="">@filter.Key</option>
+            @foreach (var option in filter.Value)
+            {
+                <option value="@option">@option</option>
+            }
+        </select>
+    }
+</div>
 
 <div class="course-grid">
     @foreach (var course in courses)

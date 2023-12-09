@@ -1,0 +1,44 @@
+﻿.course-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px; /* Adjust if necessary for rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust for desired shadow effect */
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .course-card:hover {
+        transform: translateY(-5px); /* Optional: adds a hover effect */
+    }
+
+    .course-card img {
+        width: 100%;
+        height: auto; /* Makes sure the image covers the top part of the card */
+    }
+
+    .course-card .card-body {
+        height: 200px; /* This is an example, set the height to match your first card */
+        padding: 16px;
+        background: #fff; /* Or any other background color */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* This will space out the title and the footer */
+        overflow: hidden; /* To prevent content from overflowing */
+    }
+
+    .course-card .card-title {
+        margin-bottom: 8px; /* Adjust spacing as needed */
+        font-size: 1.25rem; /* Adjust font size as needed */
+    }
+
+    .course-card .card-text {
+        font-size: 1rem; /* Adjust font size as needed */
+        color: #666; /* Adjust text color as needed */
+    }
+
+    .course-card .card-footer {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px;
+        background: #f7f7f7; /* Adjust footer background as needed */
+    }

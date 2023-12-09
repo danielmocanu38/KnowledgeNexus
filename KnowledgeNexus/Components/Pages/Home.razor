@@ -1,7 +1,40 @@
 ﻿@page "/"
+@using KnowledgeNexus.Components.Widgets
+@using KnowledgeNexus.Models
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Welcome to KnowledgeNexus</PageTitle>
 
-<h1>Hello, world!</h1>
+<div class="course-grid">
+    @foreach (var course in courses)
+    {
+        <CourseCard Course=@course />
+    }
+</div>
 
-Welcome to your new app.
+@code {
+    // This would be replaced with a service call to get courses
+    private List<Course> courses = new List<Course>
+    {
+        new Course
+        {
+            ImageUrl=  "https://files.oaiusercontent.com/file-h0PKDBSBroXgO3j7Fwnstd12?se=2023-12-09T14%3A07%3A59Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D3599%2C%20immutable&rscd=attachment%3B%20filename%3DWhatsApp%2520Image%25202023-12-09%2520at%252015.00.25_1ba77722.jpg&sig=pFh%2BQWf42aRaNILRGEcYVYNuXmcL5bgW0CnMh7LQclg%3D",
+            Title="cel mai tare curs",
+            Author = "eu",
+            Description = "da",
+        },
+        new Course
+        {
+            ImageUrl= "https://files.oaiusercontent.com/file-ABQM38Wo0FDNpIOmPcMmwmlq?se=2023-12-09T14%3A23%3A34Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D3599%2C%20immutable&rscd=attachment%3B%20filename%3Dimage.png&sig=mTcESGE4D81R4c0FVr5P8ae1s0CFMUWbcrkaWgBiaP0%3D",
+            Title="al doilea cel mai tare curs",
+            Author = "altcnv",
+            Description = "poate",
+        },
+        new Course
+        {
+            ImageUrl= "https://files.oaiusercontent.com/file-h0PKDBSBroXgO3j7Fwnstd12?se=2023-12-09T14%3A07%3A59Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D3599%2C%20immutable&rscd=attachment%3B%20filename%3DWhatsApp%2520Image%25202023-12-09%2520at%252015.00.25_1ba77722.jpg&sig=pFh%2BQWf42aRaNILRGEcYVYNuXmcL5bgW0CnMh7LQclg%3D",
+            Title="al treilea cel mai tare curs",
+            Author = "nuj cn",
+            Description = "nu",
+        }
+    };
+}

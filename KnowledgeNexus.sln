@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KnowledgeNexus", "KnowledgeNexus\KnowledgeNexus.csproj", "{5AC7F9F0-005E-493D-B09B-2FA96046104B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KnowledgeNexus", "KnowledgeNexus\KnowledgeNexus.csproj", "{5AC7F9F0-005E-493D-B09B-2FA96046104B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

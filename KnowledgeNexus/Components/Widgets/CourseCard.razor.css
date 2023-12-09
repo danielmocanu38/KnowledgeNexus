@@ -4,39 +4,42 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    background: #fff; /* Card background */
+    margin: 16px; /* Space between cards */
+    min-height: 300px; /* Minimum height for all cards */
 }
 
     .course-card:hover {
         transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Slightly larger shadow on hover */
     }
 
     .course-card img {
-        flex-grow: 1; /* Allows the image to fill the space */
-        object-fit: cover; /* Ensures the image covers the area without stretching */
         width: 100%;
+        height: 200px; /* Fixed height for images */
+        object-fit: cover; /* Cover the entire width */
     }
 
     .course-card .card-body {
-        flex-grow: 0; /* Prevents the card body from growing */
-        flex-shrink: 0; /* Prevents the card body from shrinking */
-        padding: 16px;
-        background: #fff;
+        padding: 20px; /* Padding inside the card */
+        flex-grow: 1; /* Allows the body to fill the space */
         display: flex;
         flex-direction: column;
-        justify-content: flex-end; /* Aligns content to the bottom */
-        height: 200px; /* Fixed height for the card body */
-        overflow: auto; /* Adds scroll to the card body content if it overflows */
+        justify-content: space-between; /* Space out the title and text */
     }
 
     .course-card .card-title {
-        margin-bottom: 8px;
-        font-size: 1.25rem;
+        font-size: 1.25rem; /* Larger font size for titles */
+        color: #333; /* Darker color for text */
+        margin-bottom: 12px; /* Space below the title */
     }
 
     .course-card .card-text {
         font-size: 1rem;
         color: #666;
+        flex-grow: 1; /* Allow text to expand */
+        margin-bottom: 12px; /* Space below the text */
     }
 
     .course-card .card-footer {
@@ -44,4 +47,55 @@
         background: #f7f7f7;
         display: flex;
         justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #ddd; /* Separator for the footer */
+    }
+
+    .icon-button .fas {
+        font-size: 1.25rem;
+    }
+
+    .icon-button .fa-edit {
+        color: #007bff;
+    }
+
+    .icon-button .fa-trash-alt {
+        color: #dc3545;
+    }
+
+    .icon-button + .icon-button {
+        margin-left: 10px;
+    }
+
+.card-footer > :first-child {
+    margin-right: auto;
+}
+
+.card-footer > .icon-button {
+    margin-left: 5px;
+}
+
+.icon-button {
+    position: relative;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    cursor: pointer;
+}
+
+    .icon-button::after {
+        content: attr(data-tooltip);
+        display: none;
+        position: absolute;
+        bottom: calc(100% + 5px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        z-index: 9999;
+        background-color: black;
+        color: white;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px;
+        font-size: 12px;
     }

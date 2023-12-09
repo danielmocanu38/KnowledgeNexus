@@ -1,13 +1,20 @@
 ﻿.course-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for card size */
-    grid-gap: 16px; /* Adjust the gap size as needed */
+    grid-template-columns: repeat(3, minmax(250px, 1fr));
+    grid-gap: 16px;
     padding: 16px;
+    justify-content: center;
+    align-items: start;
 }
 
-
-@media (max-width: 600px) {
+@media (max-width: 992px) {
     .course-grid {
-        grid-template-columns: 1fr; /* Full width cards on smaller screens */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .course-grid {
+        grid-template-columns: 1fr;
     }
 }

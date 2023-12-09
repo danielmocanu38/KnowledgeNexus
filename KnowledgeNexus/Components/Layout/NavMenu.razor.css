@@ -123,3 +123,18 @@
         overflow-y: auto;
     }
 }
+
+
+.navbar-brand {
+    display: flex;
+    align-items: center; /* Aligns the logo and text vertically */
+    white-space: nowrap; /* Ensures that the navbar title doesn't wrap to the next line */
+}
+
+.logo-icon {
+    height: 30px; /* Adjust the size as needed */
+    width: auto; /* Keep the width proportional to the height */
+    margin-right: 0.5rem; /* Space between the logo and the title */
+    border-radius: 50%;
+}
+

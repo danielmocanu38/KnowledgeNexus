@@ -1,12 +1,25 @@
 ﻿using KnowledgeNexusModels.Models;
+using KnowledgeNexusWebAPI.Settings;
+using MongoDB.Driver;
 
 namespace KnowledgeNexusWebAPI.Services;
 
 public class CourseService : ICourseService
 {
-	public Task<bool> Create(Course model)
+	private readonly IMongoCollection<Course> _courses;
+
+	public CourseService(IMongoDbSettings mongoDbSettings)
 	{
-		throw new NotImplementedException();
+		var client = new MongoClient(mongoDbSettings.ConnectionString);
+		var database = client.GetDatabase(mongoDbSettings.DatabaseName);
+		_courses = database.GetCollection<Course>(mongoDbSettings.CollectionName);
+	}
+
+	public async Task<bool> Create(Course model)
+	{
+		await _courses.InsertOneAsync(model);
+		return true;
+
 	}
 
 	public Task<bool> Delete(Guid id)
@@ -19,9 +32,10 @@ public class CourseService : ICourseService
 		throw new NotImplementedException();
 	}
 
-	public Task<List<Course>> GetAll()
+	public async Task<List<Course>> GetAll()
 	{
-		throw new NotImplementedException();
+		var result = await _courses.FindAsync(course => true);
+		return result.ToList();
 	}
 
 	public Task<bool> Update(Guid id, Course model)

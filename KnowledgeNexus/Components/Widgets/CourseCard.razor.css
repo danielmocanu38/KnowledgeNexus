@@ -1,44 +1,47 @@
 ﻿.course-card {
     display: flex;
     flex-direction: column;
-    border-radius: 8px; /* Adjust if necessary for rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust for desired shadow effect */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s ease-in-out;
 }
 
     .course-card:hover {
-        transform: translateY(-5px); /* Optional: adds a hover effect */
+        transform: translateY(-5px);
     }
 
     .course-card img {
+        flex-grow: 1; /* Allows the image to fill the space */
+        object-fit: cover; /* Ensures the image covers the area without stretching */
         width: 100%;
-        height: auto; /* Makes sure the image covers the top part of the card */
     }
 
     .course-card .card-body {
-        height: 200px; /* This is an example, set the height to match your first card */
+        flex-grow: 0; /* Prevents the card body from growing */
+        flex-shrink: 0; /* Prevents the card body from shrinking */
         padding: 16px;
-        background: #fff; /* Or any other background color */
+        background: #fff;
         display: flex;
         flex-direction: column;
-        justify-content: space-between; /* This will space out the title and the footer */
-        overflow: hidden; /* To prevent content from overflowing */
+        justify-content: flex-end; /* Aligns content to the bottom */
+        height: 200px; /* Fixed height for the card body */
+        overflow: auto; /* Adds scroll to the card body content if it overflows */
     }
 
     .course-card .card-title {
-        margin-bottom: 8px; /* Adjust spacing as needed */
-        font-size: 1.25rem; /* Adjust font size as needed */
+        margin-bottom: 8px;
+        font-size: 1.25rem;
     }
 
     .course-card .card-text {
-        font-size: 1rem; /* Adjust font size as needed */
-        color: #666; /* Adjust text color as needed */
+        font-size: 1rem;
+        color: #666;
     }
 
     .course-card .card-footer {
+        padding: 16px;
+        background: #f7f7f7;
         display: flex;
         justify-content: space-between;
-        padding: 16px;
-        background: #f7f7f7; /* Adjust footer background as needed */
     }

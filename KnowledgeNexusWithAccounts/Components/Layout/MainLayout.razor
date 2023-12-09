@@ -6,8 +6,25 @@
     </div>
 
     <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
+        <div class="top-row flex-column">
+            <div class="search-container">
+                <input type="text" placeholder="Search your favorite courses" @bind="searchTerm">
+                <button @onclick="SearchCourses">Search</button>
+                <!-- Include dropdowns for additional filters if needed -->
+            </div>
+            <br />
+            <div class="filter-container">
+                @foreach (var filter in filters)
+                {
+                    <select @onchange="e => SetFilter(filter.Key, e.Value?.ToString())">
+                        <option value="">@filter.Key</option>
+                        @foreach (var option in filter.Value)
+                        {
+                            <option value="@option">@option</option>
+                        }
+                    </select>
+                }
+            </div>
         </div>
 
         <article class="content px-4">

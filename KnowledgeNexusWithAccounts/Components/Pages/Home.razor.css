@@ -1,0 +1,13 @@
+﻿.course-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjust minmax for card size */
+    grid-gap: 16px; /* Adjust the gap size as needed */
+    padding: 16px;
+}
+
+
+@media (max-width: 600px) {
+    .course-grid {
+        grid-template-columns: 1fr; /* Full width cards on smaller screens */
+    }
+}

@@ -22,10 +22,10 @@
     </div>
 </div>
 
-
-
-
 @code {
+    [Parameter]
+    public Course Course { get; set; } = new();
+
     private bool IsTeacher = false; // Replace with backend role check
     private bool IsContentManager = false; // Replace with backend role check
 }

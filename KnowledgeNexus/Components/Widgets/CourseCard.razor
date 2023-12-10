@@ -5,32 +5,29 @@
     <div class="card-body">
         <h5 class="card-title">@Course?.Title</h5>
         <p class="card-text">@Course?.Description</p>
-        <div class="card-footer">
-            <span class="text-muted">@Course?.Author</span>
-            @if (IsTeacher)
-            {
+    </div>
+    <div class="card-footer">
+        <span class="text-muted">@Course?.Author</span>
+        @if (IsTeacher)
+        {
+            <div class="actions-container">
+                <div class="button-divider"></div>
                 <button class="btn icon-button" title="Edit"><i class="fas fa-edit"></i></button>
                 <button class="btn icon-button" title="Delete"><i class="fas fa-trash-alt"></i></button>
-            }
-            else if (IsRegularUser)
-            {
-                
-            }
-            @if (IsContentManager)
-            {
-                <button class="btn btn-success">Create</button>
-            }
-            <!-- Other role-specific buttons or controls -->
-        </div>
+            </div>
+        }
     </div>
 </div>
+
+
+
 
 @code {
     [Parameter]
     public Course? Course { get; set; }
 
     // These are hardcoded for now and should be replaced with actual checks against the backend
-    private bool IsRegularUser = false; // Assume a regular user for testing
-    private bool IsTeacher = true; // Replace with backend role check
+    private bool IsRegularUser = true; // Assume a regular user for testing
+    private bool IsTeacher = false; // Replace with backend role check
     private bool IsContentManager = false; // Replace with backend role check
 }

@@ -129,6 +129,7 @@
     display: flex;
     align-items: center; /* Aligns the logo and text vertically */
     white-space: nowrap; /* Ensures that the navbar title doesn't wrap to the next line */
+    font-weight: bold;
 }
 
 .logo-icon {

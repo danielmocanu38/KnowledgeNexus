@@ -2,6 +2,7 @@
 
 @using KnowledgeNexus.Components.Widgets
 @using KnowledgeNexusModels.Models
+@using MongoDB.Bson
 
 <PageTitle>Welcome to KnowledgeNexus</PageTitle>
 <div class="filter-container">
@@ -30,6 +31,7 @@
     {
         new Course
         {
+            Id=ObjectId.GenerateNewId(),
             ImageUrl=  "https://support.thinkific.com/hc/article_attachments/360042080814/5d37323b52af1.png",
             Title="cel mai tare curs",
             Author = "eu",
@@ -37,38 +39,43 @@
         },
         new Course
         {
+            Id=ObjectId.GenerateNewId(),
             ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYtJrwVaJT5ZqR3MHNnpJPFF4HFmGshOjA&usqp=CAU",
             Title="al doilea cel mai tare curs",
             Author = "altcnv",
             Description = "poate",
         },
-        // new Course
-        // {
-        //     ImageUrl= "https://www.copc.com/wp-content/uploads/2022/07/Webinar-14@1x.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://realestate.excelacademy.my/wp-content/uploads/2023/03/BOVAEP-Estate-Agent-Examination-1-2.png",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://i.ytimg.com/vi/OHAYpMaYzHw/maxresdefault.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://s3.envato.com/files/455344611/preview.__large_preview.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // }
+        new Course
+        {
+            Id=ObjectId.GenerateNewId(),
+            ImageUrl= "https://www.copc.com/wp-content/uploads/2022/07/Webinar-14@1x.jpg",
+            Title="al treilea cel mai tare curs",
+            Author = "nuj cn",
+            Description = "nu",
+        },
+        new Course
+        {
+            Id=ObjectId.GenerateNewId(),
+            ImageUrl= "https://realestate.excelacademy.my/wp-content/uploads/2023/03/BOVAEP-Estate-Agent-Examination-1-2.png",
+            Title="al treilea cel mai tare curs",
+            Author = "nuj cn",
+            Description = "nu",
+        },
+        new Course
+        {
+            Id=ObjectId.GenerateNewId(),
+            ImageUrl= "https://i.ytimg.com/vi/OHAYpMaYzHw/maxresdefault.jpg",
+            Title="al treilea cel mai tare curs",
+            Author = "nuj cn",
+            Description = "nu",
+        },
+        new Course
+        {
+            Id=ObjectId.GenerateNewId(),
+            ImageUrl= "https://s3.envato.com/files/455344611/preview.__large_preview.jpg",
+            Title="al treilea cel mai tare curs",
+            Author = "nuj cn",
+            Description = "nu",
+        }
     };
 }

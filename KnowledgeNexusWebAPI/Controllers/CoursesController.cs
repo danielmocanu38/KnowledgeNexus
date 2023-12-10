@@ -52,6 +52,19 @@ public class CoursesController : ControllerBase
 		return Ok(announcement);
 	}
 
+	[HttpGet("getByText/{text}")]
+	public async Task<IActionResult> GetAnnouncementByText(string text)
+	{
+		var announcement = await _courseService.GetByText(text);
+
+		if (announcement == null)
+		{
+			return NotFound();
+		}
+
+		return Ok(announcement);
+	}
+
 	[HttpPut("{id}")]
 	public async Task<IActionResult> UpdateCourse(string id, [FromBody] Course course)
 	{

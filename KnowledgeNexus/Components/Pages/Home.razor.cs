@@ -7,16 +7,13 @@ public partial class Home
     private readonly Dictionary<string, List<string>> filters = new()
     {
         { "Subject", new List<string> { "Math", "Science", "Literature" } },
-        { "Partner", new List<string> { "University A", "Company B", "Institution C" } },
+        {"Language", new List<string> {"En", "Ro"} },
+        {"Content", new List<string> {"Audio, Video, Text"} },
+        { "Source", new List<string> { "University A" } },
         // Add other filters as needed
     };
 
     private readonly Dictionary<string, string> selectedFilters = [];
-
-    static void SearchCourses()
-    {
-        // Logic to search courses based on searchTerm and any filters
-    }
 
     private void SetFilter(string filterKey, string? selectedOption)
     {

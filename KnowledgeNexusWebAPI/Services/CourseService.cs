@@ -42,4 +42,12 @@ public class CourseService : ICourseService
 		await _courses.ReplaceOneAsync(course => course.Id == id, model);
 		return true;
 	}
+
+	public async Task<List<Course>> GetByText(string text)
+	{
+		return await _courses.Find(course=>course.Title.Contains(text)||
+		course.Description.Contains(text)||
+		course.Author.Contains(text)||
+		course.Categories.Any(category=>category.Contains(text))).ToListAsync();
+	}
 }

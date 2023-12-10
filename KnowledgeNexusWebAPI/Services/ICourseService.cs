@@ -2,6 +2,7 @@
 
 namespace KnowledgeNexusWebAPI.Services;
 
-public interface ICourseService: ICollectionService<Course>
+public interface ICourseService : ICollectionService<Course>
 {
+	Task<List<Course>> GetByText(string text);
 }

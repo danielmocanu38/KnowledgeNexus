@@ -7,7 +7,7 @@
 @inject CoursesService CoursesService
 
 <PageTitle>Welcome to KnowledgeNexus</PageTitle>
-<div class="filter-container">
+@* <div class="filter-container">
 	@foreach (var filter in filters)
 	{
 		<select @onchange="e => SetFilter(filter.Key, e.Value?.ToString())">
@@ -18,7 +18,7 @@
 			}
 		</select>
 	}
-</div>
+</div> *@
 
 <div class="course-grid">
 	@if (courses != null)
@@ -32,7 +32,7 @@
 
 @code {
 	// This would be replaced with a service call to get courses
-	private List<Course>? courses;
+	public static List<Course>? courses;
 
 	protected override async Task OnInitializedAsync()
 	{

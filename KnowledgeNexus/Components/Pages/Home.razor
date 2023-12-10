@@ -2,73 +2,40 @@
 
 @using KnowledgeNexus.Components.Widgets
 @using KnowledgeNexusModels.Models
+@using KnowledgeNexus.Services
+
+@inject CoursesService CoursesService
 
 <PageTitle>Welcome to KnowledgeNexus</PageTitle>
 <div class="filter-container">
-    @foreach (var filter in filters)
-    {
-        <select @onchange="e => SetFilter(filter.Key, e.Value?.ToString())">
-            <option value="">@filter.Key</option>
-            @foreach (var option in filter.Value)
-            {
-                <option value="@option">@option</option>
-            }
-        </select>
-    }
+	@foreach (var filter in filters)
+	{
+		<select @onchange="e => SetFilter(filter.Key, e.Value?.ToString())">
+			<option value="">@filter.Key</option>
+			@foreach (var option in filter.Value)
+			{
+				<option value="@option">@option</option>
+			}
+		</select>
+	}
 </div>
 
 <div class="course-grid">
-    @foreach (var course in courses)
-    {
-        <CourseCard Course=@course />
-    }
+	@if (courses != null)
+	{
+		@foreach (var course in courses)
+		{
+			<CourseCard Course=@course />
+		}
+	}
 </div>
 
 @code {
-    // This would be replaced with a service call to get courses
-    private List<Course> courses = new List<Course>
-    {
-        new Course
-        {
-            ImageUrl=  "https://support.thinkific.com/hc/article_attachments/360042080814/5d37323b52af1.png",
-            Title="cel mai tare curs",
-            Author = "eu",
-            Description = "da",
-        },
-        new Course
-        {
-            ImageUrl= "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiFYtJrwVaJT5ZqR3MHNnpJPFF4HFmGshOjA&usqp=CAU",
-            Title="al doilea cel mai tare curs",
-            Author = "altcnv",
-            Description = "poate",
-        },
-        // new Course
-        // {
-        //     ImageUrl= "https://www.copc.com/wp-content/uploads/2022/07/Webinar-14@1x.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://realestate.excelacademy.my/wp-content/uploads/2023/03/BOVAEP-Estate-Agent-Examination-1-2.png",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://i.ytimg.com/vi/OHAYpMaYzHw/maxresdefault.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // },
-        // new Course
-        // {
-        //     ImageUrl= "https://s3.envato.com/files/455344611/preview.__large_preview.jpg",
-        //     Title="al treilea cel mai tare curs",
-        //     Author = "nuj cn",
-        //     Description = "nu",
-        // }
-    };
+	// This would be replaced with a service call to get courses
+	private List<Course>? courses;
+
+	protected override async Task OnInitializedAsync()
+	{
+		courses = await CoursesService.GetAllCoursesAsync();
+	}
 }

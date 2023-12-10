@@ -1,72 +1,66 @@
-﻿@page "/viewCourse"
+﻿@page "/viewCourse/{id}"
 @using KnowledgeNexusModels.Models
+@using KnowledgeNexus.Services
+@using MongoDB.Bson
+
+@inject CoursesService CoursesService
+
 @attribute [StreamRendering]
 
 <PageTitle>ViewCourse</PageTitle>
 
-<h1>@course.Title</h1>
-<p>@course.Description</p>
-<p>Author: @course.Author</p>
-
-<div class="category-chips">
-    @foreach (var category in course.Categories)
-    {
-        <span class="chip">@category.Name</span>
-    }
-</div>
-
-
-
-@foreach (var content in course.Contents)
+@if (_course != null)
 {
-    @if (content.Type == ContentType.Video)
-    {
-        <div>
-            <iframe width="560" height="315" src="@content.Url" frameborder="0" allowfullscreen></iframe>
-        </div>
-    }
-    else if (content.Type == ContentType.Audio)
-    {
-        <div>
-            <audio controls>
-                <source src="@content.Url" type="audio/mpeg">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-    }
-    else if (content.Type == ContentType.PDF)
-    {
-        <div>
-            <object data="@content.Url" type="application/pdf" width="100%" height="600">
-                <p>
-                    It appears you don't have a PDF plugin for this browser.
-                    <a href="@content.Url">Click here to download the PDF file.</a>
-                </p>
-            </object>
-        </div>
-    }
+	<h1>@_course.Title</h1>
+	<p>@_course.Description</p>
+	<p>Author: @_course.Author</p>
+
+	<div class="category-chips">
+		@foreach (var category in _course.Categories)
+		{
+			<span class="chip">@category</span>
+		}
+	</div>
+
+	@foreach (var content in _course.Contents)
+	{
+		@if (content.Type == ContentType.Video)
+		{
+			<div>
+				<iframe width="560" height="315" src="@content.Url" frameborder="0" allowfullscreen></iframe>
+			</div>
+		}
+		else if (content.Type == ContentType.Audio)
+		{
+			<div>
+				<audio controls>
+					<source src="@content.Url" type="audio/mpeg">
+					Your browser does not support the audio element.
+				</audio>
+			</div>
+		}
+		else if (content.Type == ContentType.PDF)
+		{
+			<div>
+				<object data="@content.Url" type="application/pdf" width="100%" height="600">
+					<p>
+						It appears you don't have a PDF plugin for this browser.
+						<a href="@content.Url">Click here to download the PDF file.</a>
+					</p>
+				</object>
+			</div>
+		}
+	}
 }
 
 @code {
-    @code {
-        Course course = new Course
-        {
-            Title = "Sample Course",
-            Description = "This is a demo course description.",
-            Author = "John Doe",
-            ImageUrl = "https://example.com/sample_image.jpg",
-            Categories = new List<Category>
-        {
-            new Category { Name = "Programming", ParentCategory = "Technology" },
-            new Category { Name = "Web Development", ParentCategory = "Technology" },
-        },
-            Contents = new List<CourseContent>
-        {
-            new CourseContent { Type = ContentType.Video, Url = "https://www.youtube.com/embed/VIDEO_ID_HERE" },
-            new CourseContent { Type = ContentType.Audio, Url = "https://example.com/sample_audio.mp3" },
-            new CourseContent { Type = ContentType.PDF, Url = "https://example.com/sample_pdf.pdf" }
-        }
-        };
-    }
-        // You'll need to populate this course object with data
+	[Parameter]
+	public string Id { get; set; }
+
+	private Course? _course;
+
+	protected override async Task OnInitializedAsync()
+	{
+		_course = await CoursesService.GetCourseByIdAsync(Id);
+	}
 }

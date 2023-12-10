@@ -1,6 +1,7 @@
 ﻿using KnowledgeNexusModels.Models;
 using KnowledgeNexusWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
+using MongoDB.Bson;
 
 namespace KnowledgeNexusWebAPI.Controllers;
 
@@ -36,4 +37,20 @@ public class CoursesController : ControllerBase
 	{
 		return Ok(await _courseService.GetAll());
 	}
+
+
+	[HttpGet("getById/{id}")]
+	public async Task<IActionResult> GetAnnouncementById(string id)
+	{
+		var announcement = await _courseService.Get(id);
+
+		if (announcement == null)
+		{
+			return NotFound();
+		}
+
+		return Ok(announcement);
+	}
+
+
 }

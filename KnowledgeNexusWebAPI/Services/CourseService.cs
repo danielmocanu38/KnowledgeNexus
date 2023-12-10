@@ -1,6 +1,5 @@
 ﻿using KnowledgeNexusModels.Models;
 using KnowledgeNexusWebAPI.Settings;
-using MongoDB.Bson;
 using MongoDB.Driver;
 
 namespace KnowledgeNexusWebAPI.Services;
@@ -20,27 +19,27 @@ public class CourseService : ICourseService
 	{
 		await _courses.InsertOneAsync(model);
 		return true;
-
 	}
 
-	public Task<bool> Delete(string id)
+	public async Task<bool> Delete(string id)
 	{
-		throw new NotImplementedException();
+		await _courses.DeleteOneAsync(course => course.Id == id);
+		return true;
 	}
 
 	public async Task<Course> Get(string id)
 	{
-		return (await _courses.FindAsync(course => course.Id == id)).FirstOrDefault();
+		return await _courses.Find(course => course.Id == id).FirstOrDefaultAsync();
 	}
 
 	public async Task<List<Course>> GetAll()
 	{
-		var result = await _courses.FindAsync(course => true);
-		return result.ToList();
+		return await _courses.Find(course => true).ToListAsync();
 	}
 
-	public Task<bool> Update(string id, Course model)
+	public async Task<bool> Update(string id, Course model)
 	{
-		throw new NotImplementedException();
+		await _courses.ReplaceOneAsync(course => course.Id == id, model);
+		return true;
 	}
 }

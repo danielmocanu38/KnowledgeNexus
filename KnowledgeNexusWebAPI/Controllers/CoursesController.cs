@@ -52,5 +52,49 @@ public class CoursesController : ControllerBase
 		return Ok(announcement);
 	}
 
+	[HttpPut("{id}")]
+	public async Task<IActionResult> UpdateCourse(string id, [FromBody] Course course)
+	{
+		if (course == null || id != course.Id)
+		{
+			return BadRequest("Invalid course or ID mismatch");
+		}
+
+		var existingCourse = await _courseService.Get(id);
+
+		if (existingCourse == null)
+		{
+			return NotFound("Course not found");
+		}
+
+		var updated = await _courseService.Update(id, course);
+
+		if (!updated)
+		{
+			return BadRequest("Something went wrong while updating");
+		}
+
+		return Ok(course);
+	}
+
+	[HttpDelete("{id}")]
+	public async Task<IActionResult> DeleteCourse(string id)
+	{
+		var existingCourse = await _courseService.Get(id);
+
+		if (existingCourse == null)
+		{
+			return NotFound("Course not found");
+		}
+
+		var deleted = await _courseService.Delete(id);
+
+		if (!deleted)
+		{
+			return BadRequest("Something went wrong while deleting");
+		}
+
+		return Ok("Course deleted successfully");
+	}
 
 }

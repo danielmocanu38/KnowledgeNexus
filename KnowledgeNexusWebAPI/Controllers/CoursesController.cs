@@ -1,7 +1,6 @@
 ﻿using KnowledgeNexusModels.Models;
 using KnowledgeNexusWebAPI.Services;
 using Microsoft.AspNetCore.Mvc;
-using MongoDB.Bson;
 
 namespace KnowledgeNexusWebAPI.Controllers;
 
@@ -9,10 +8,11 @@ namespace KnowledgeNexusWebAPI.Controllers;
 [ApiController]
 public class CoursesController : ControllerBase
 {
-	ICourseService _courseService;
+	private readonly ICourseService _courseService;
+
     public CoursesController(ICourseService courseService)
     {
-        _courseService = courseService ?? throw new ArgumentNullException(nameof(CourseService));
+		_courseService = courseService;
     }
 
 	[HttpPost]

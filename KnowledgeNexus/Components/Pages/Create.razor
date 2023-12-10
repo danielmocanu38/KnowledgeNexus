@@ -1,5 +1,10 @@
 ﻿@page "/create"
+
 @using KnowledgeNexusModels.Models
+@using KnowledgeNexus.Services
+
+@inject CoursesService CoursesService
+
 @rendermode InteractiveServer
 
 <PageTitle>Create Course</PageTitle>
@@ -11,12 +16,12 @@
 			<form @onsubmit="CreateCourse" class="g-3">
 				<div class="mb-3">
 					<label for="title" class="form-label">Title:</label>
-					<input type="text" id="title" class="form-control" @bind="course.Title" />
+					<input type="text" id="title" class="form-control" @bind="_course.Title" />
 				</div>
 
 				<div class="mb-3">
 					<label for="description" class="form-label">Description:</label>
-					<textarea id="description" class="form-control" @bind="course.Description"></textarea>
+					<textarea id="description" class="form-control" @bind="_course.Description"></textarea>
 				</div>
 
 				<h3>Filters</h3>
@@ -24,6 +29,12 @@
 					<input type="text" placeholder="Add category" @bind="Tag">
 					<button @onclick="AddTag">Add</button>
 					<!-- Include dropdowns for additional filters if needed -->
+				</div>
+				<div class="category-chips">
+					@foreach (var category in _course.Categories)
+					{
+						<span class="chip">@category</span>
+					}
 				</div>
 
 				<button type="submit" class="btn btn-primary">Create</button>
@@ -34,7 +45,7 @@
 			<h3>Input Content</h3>
 			<div class="mb-3">
 				<label for="contentType" class="form-label">Content Type:</label>
-				<select id="contentType" class="form-select" @bind="selectedContentType">
+				<select id="contentType" class="form-select" @bind="_selectedContentType">
 					<option value="Audio">Audio</option>
 					<option value="Video">Video</option>
 					<option value="PDF">PDF</option>
@@ -42,50 +53,11 @@
 			</div>
 			<div class="mb-3">
 				<label for="contentUrl" class="form-label">Content URL:</label>
-				<input type="text" id="contentUrl" class="form-control" @bind="contentUrl" />
+				<input type="text" id="contentUrl" class="form-control" @bind="_contentUrl" />
 			</div>
 			<button @onclick="AddContent" class="btn btn-primary">Add Content</button>
 		</div>
 	</div>
 </div>
 
-@code {
-	Course course = new Course();
-	string selectedContentType = "Audio";
-	string contentUrl = string.Empty;
-	public string Tag { get; set; }
 
-	async Task CreateCourse()
-	{
-		// Call service to save course data in the database
-		// await courseService.CreateCourse(course);
-	}
-
-
-	void AddTag()
-	{
-		if (!string.IsNullOrWhiteSpace(Tag))
-		{
-			course.Categories.Add(Tag);
-			Tag = string.Empty;
-		}
-	}
-
-	void AddContent()
-	{
-		if (!string.IsNullOrWhiteSpace(contentUrl))
-		{
-			ContentType type;
-			Enum.TryParse(selectedContentType, out type);
-
-			course.Contents.Add(new CourseContent
-				{
-					Type = type,
-					Url = contentUrl
-				});
-
-			// Clear the input fields after adding content
-			contentUrl = string.Empty;
-		}
-	}
-}

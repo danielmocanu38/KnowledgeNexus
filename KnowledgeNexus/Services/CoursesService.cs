@@ -23,6 +23,10 @@ public class CoursesService
 		return await _httpClient.GetFromJsonAsync<Course>($"api/Courses/getById/{id}");
 	}
 
+	public async Task<List<Course>?> GetCourseByText(string text)
+	{
+		return await _httpClient.GetFromJsonAsync<List<Course>>($"api/Courses/getByText/{text}");
+	}
 	public async Task<bool> CreateCourseAsync(Course course)
 	{
 		var content = new StringContent(JsonSerializer.Serialize(course), Encoding.UTF8, "application/json");

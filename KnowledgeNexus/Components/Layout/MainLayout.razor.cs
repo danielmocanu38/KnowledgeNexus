@@ -1,11 +1,14 @@
+using KnowledgeNexus.Components.Pages;
+using KnowledgeNexus.Services;
+
 namespace KnowledgeNexus.Components.Layout;
 
 public partial class MainLayout
 {
-    string searchTerm = string.Empty;
+	private string searchTerm = string.Empty;
 
-    static void SearchCourses()
-    {
-        // Logic to search courses based on searchTerm and any filters
-    }
+	private void SearchCourses()
+	{
+		Home.courses = CoursesService.GetCourseByText(searchTerm).Result;
+	}
 }

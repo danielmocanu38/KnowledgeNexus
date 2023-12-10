@@ -1,6 +1,7 @@
 using KnowledgeNexus.Components;
 using KnowledgeNexus.Components.Account;
 using KnowledgeNexus.Data;
+using KnowledgeNexus.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,6 +11,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
+
+builder.Services.AddHttpClient<CoursesService>(httpClient =>
+{
+    httpClient.BaseAddress = new Uri("http://localhost:5175/");
+});
 
 builder.Services.AddCascadingAuthenticationState();
 builder.Services.AddScoped<IdentityUserAccessor>();
@@ -35,7 +41,8 @@ builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.Requ
     .AddDefaultTokenProviders();
 
 builder.Services.AddAuthorizationBuilder()
-    .AddPolicy("AbleToCreate", policy => policy.RequireRole("Teacher", "Admin"));
+    .AddPolicy("AbleToCreate", policy => policy.RequireRole("Teacher", "Admin"))
+    .AddPolicy("Teacher", policy => policy.RequireRole("Teacher"));
 
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 

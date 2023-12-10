@@ -1,23 +1,19 @@
-﻿using System.Collections.Generic;
-using MongoDB.Bson;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace KnowledgeNexusModels.Models
 {
-    public class Course
+	public class Course
     {
-        public ObjectId Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+		public string? Id { get; set; }
         public string ImageUrl { get; set; } = string.Empty;
         public string Title { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;
         public string Author { get; set; } = string.Empty;
-        public List<Category> Categories { get; set; } = new List<Category>();
-        public List<CourseContent> Contents { get; set; } = new List<CourseContent>();
-    }
-
-    public class Category
-    {
-        public string Name { get; set; } = string.Empty;
-        public string ParentCategory { get; set; } = string.Empty; // Parent category name
+        public List<string> Categories { get; set; } = [];
+        public List<CourseContent> Contents { get; set; } = [];
     }
 
     public class CourseContent

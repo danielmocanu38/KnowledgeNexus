@@ -60,10 +60,10 @@ using (var scope = app.Services.CreateScope())
         Email = "admin@admin.com",
         EmailConfirmed = true
     };
-    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "admin123!");
-    userStore.CreateAsync(user, CancellationToken.None).Wait();
+    user.PasswordHash = userManager?.PasswordHasher.HashPassword(user, "admin123!");
+    userStore?.CreateAsync(user, CancellationToken.None).Wait();
 
-    userManager.AddToRoleAsync(user, "Admin").Wait();
+    userManager?.AddToRoleAsync(user, "Admin").Wait();
 
     // add teacher
     user = new ApplicationUser
@@ -72,10 +72,10 @@ using (var scope = app.Services.CreateScope())
         Email = "teacher@teacher.com",
         EmailConfirmed = true
     };
-    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "teacher123!");
-    userStore.CreateAsync(user, CancellationToken.None).Wait();
+    user.PasswordHash = userManager?.PasswordHasher.HashPassword(user, "teacher123!");
+    userStore?.CreateAsync(user, CancellationToken.None).Wait();
 
-    userManager.AddToRoleAsync(user, "Teacher").Wait();
+    userManager?.AddToRoleAsync(user, "Teacher").Wait();
 
     // add student
     user = new ApplicationUser
@@ -84,10 +84,10 @@ using (var scope = app.Services.CreateScope())
         Email = "student@student.com",
         EmailConfirmed = true
     };
-    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "student123!");
-    userStore.CreateAsync(user, CancellationToken.None).Wait();
+    user.PasswordHash = userManager?.PasswordHasher.HashPassword(user, "student123!");
+    userStore?.CreateAsync(user, CancellationToken.None).Wait();
 
-    userManager.AddToRoleAsync(user, "Student").Wait();
+    userManager?.AddToRoleAsync(user, "Student").Wait();
 }
 
 // Configure the HTTP request pipeline.

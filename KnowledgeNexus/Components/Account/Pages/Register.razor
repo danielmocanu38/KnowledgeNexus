@@ -43,6 +43,15 @@
                 <label for="confirm-password">Confirm Password</label>
                 <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
             </div>
+            <div class="form-floating mb-3">
+                <InputSelect @bind-Value="Input.Role" class="form-control" aria-required="true">
+                    <option value="">Select Role</option>
+                    <option value="Teacher">Teacher</option>
+                    <option value="Student">Student</option>
+                </InputSelect>
+                <label for="role">Role</label>
+                <ValidationMessage For="() => Input.Role" class="text-danger" />
+            </div>
             <button type="submit" class="w-100 btn btn-lg btn-primary">Register</button>
         </EditForm>
     </div>
@@ -73,6 +82,8 @@
             identityErrors = result.Errors;
             return;
         }
+
+        await UserManager.AddToRoleAsync(user, Input.Role);
 
         Logger.LogInformation("User created a new account with password.");
 
@@ -135,5 +146,9 @@
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; } = "";
+
+        [Required]
+        [Display(Name = "Role")]
+        public string Role { get; set; } = "";
     }
 }

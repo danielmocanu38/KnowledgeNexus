@@ -29,13 +29,66 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddIdentityCore<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddSignInManager()
     .AddDefaultTokenProviders();
 
+builder.Services.AddAuthorizationBuilder()
+    .AddPolicy("AbleToCreate", policy => policy.RequireRole("Teacher", "Admin"));
+
 builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
+    roleManager?.CreateAsync(new IdentityRole("Student")).Wait();
+    roleManager?.CreateAsync(new IdentityRole("Teacher")).Wait();
+    roleManager?.CreateAsync(new IdentityRole("Admin")).Wait();
+
+    var userStore = scope.ServiceProvider.GetService<IUserStore<ApplicationUser>>();
+    var userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
+
+    ApplicationUser user;
+
+    // add admin
+    user = new ApplicationUser
+    {
+        UserName = "admin@admin.com",
+        Email = "admin@admin.com",
+        EmailConfirmed = true
+    };
+    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "admin123!");
+    userStore.CreateAsync(user, CancellationToken.None).Wait();
+
+    userManager.AddToRoleAsync(user, "Admin").Wait();
+
+    // add teacher
+    user = new ApplicationUser
+    {
+        UserName = "teacher@teacher.com",
+        Email = "teacher@teacher.com",
+        EmailConfirmed = true
+    };
+    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "teacher123!");
+    userStore.CreateAsync(user, CancellationToken.None).Wait();
+
+    userManager.AddToRoleAsync(user, "Teacher").Wait();
+
+    // add student
+    user = new ApplicationUser
+    {
+        UserName = "student@student.com",
+        Email = "student@student.com",
+        EmailConfirmed = true
+    };
+    user.PasswordHash = userManager.PasswordHasher.HashPassword(user, "student123!");
+    userStore.CreateAsync(user, CancellationToken.None).Wait();
+
+    userManager.AddToRoleAsync(user, "Student").Wait();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
